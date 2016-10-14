@@ -19,15 +19,16 @@ printf "We will record now the 3 audio sample, when you see the record process, 
 printf "Press any key to start the record"
 read -n 1 -s
 
-rec -r 16000 -c 1 -b 16 -e signed-integer /tmp/1.wav
-rec -r 16000 -c 1 -b 16 -e signed-integer /tmp/2.wav
-rec -r 16000 -c 1 -b 16 -e signed-integer /tmp/3.wav
+eval "rec -r 16000 -c 1 -b 16 -e signed-integer /tmp/1.wav"
+eval "rec -r 16000 -c 1 -b 16 -e signed-integer /tmp/2.wav"
+eval "rec -r 16000 -c 1 -b 16 -e signed-integer /tmp/3.wav"
 
 WAV1=`base64 /tmp/1.wav`
 WAV2=`base64 /tmp/2.wav`
 WAV3=`base64 /tmp/3.wav`
-OUTFILE="stt_engines/snowboy/ressouces/$4.pmdl"
-NAME=${$4//_/ }
+OUTFILE="stt_engines/snowboy/resources/$1.pmdl"
+tmp=$1
+NAME=$(echo "${tmp//_/ }")
 
 
 cat <<EOF >data.json
